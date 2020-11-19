@@ -82,7 +82,7 @@ class ArticleListActivity : BaseListActivity(), CustomClickListener//, Coroutine
     }
 
 
-    fun updateUI(articleResult: ArticleResult)
+    private fun updateUI(articleResult: ArticleResult)
     {
         addRecordsToRecyclerView(articleResult.lstResults as ArrayList<Any>)
     }

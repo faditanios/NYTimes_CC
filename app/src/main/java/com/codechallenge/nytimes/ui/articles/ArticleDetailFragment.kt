@@ -37,11 +37,9 @@ class ArticleDetailFragment : Fragment()
                 // to load content from a content provider.
                 article = arguments!!.getSerializable(ARG_ARTICLE) as Article?
                 val activity: Activity? = this.activity
-                val appBarLayout: CollapsingToolbarLayout = activity!!.findViewById(R.id.toolbar_layout)
-                if (appBarLayout != null)
-                {
-                    appBarLayout.title = article!!.source
-                }
+                val appBarLayout: CollapsingToolbarLayout =
+                    activity!!.findViewById(R.id.toolbar_layout)
+                appBarLayout.title = article!!.source
             }
         }
     }

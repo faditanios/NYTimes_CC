@@ -21,7 +21,7 @@ class ArticlesRepository : BaseRepository()
         )
         if (response.isSuccessful)
         {
-            result!!.postValue(response.body()!!)
+            result.postValue(response.body()!!)
         }
     }
 }
