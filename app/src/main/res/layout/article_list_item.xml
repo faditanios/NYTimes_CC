@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.codechallenge.nytimes.model.Article" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/rv_margin"
+        android:layout_marginBottom="@dimen/rv_margin"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_media"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@{article.title}"
+                android:layout_margin="@dimen/imageview_margin" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@{article.title}"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView
+                android:id="@+id/tv_byline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:textColor="@color/secondaryTextColor"
+                android:text="@{article.byline}"
+                android:textAppearance="?attr/textAppearanceListItem" />
+
+            <TextView
+                android:id="@+id/tv_published_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:drawableStart="@drawable/ic_date_range"
+                android:drawableTint="@color/secondaryTextColor"
+                android:textColor="@color/secondaryTextColor"
+                android:drawablePadding="8dp"
+                android:layout_marginStart="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:text="@{article.publishedDate}"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/imageview_margin"
+            android:contentDescription="@string/ShowDetails"
+            android:background="@drawable/ic_keyboard_arrow_right_24dp"
+            android:backgroundTint="?attr/colorPrimary" />
+
+
+    </LinearLayout>
+</layout>
