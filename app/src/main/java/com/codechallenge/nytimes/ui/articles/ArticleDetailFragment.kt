@@ -2,7 +2,6 @@ package com.codechallenge.nytimes.ui.articles
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -44,8 +43,7 @@ class ArticleDetailFragment : Fragment()
     ): View?
     {
         val binding: ArticleDetailBinding = DataBindingUtil.inflate(
-            inflater, R.layout.article_detail, container, false
-        )
+            inflater, R.layout.article_detail, container, false)
         val view: View = binding.getRoot()
         article?.let {
             lifecycleScope.launch(Dispatchers.Main)
