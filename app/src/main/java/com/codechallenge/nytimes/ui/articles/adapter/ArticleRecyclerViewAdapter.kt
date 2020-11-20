@@ -74,14 +74,22 @@ class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickLis
     override fun filter(filter: String?)
     {
         clear()
-        var article: Article
-        for (obj in mValuesAll)
+        val filterLength = filter?.length ?: 0
+        if(filterLength > 0)
         {
-            article = obj as Article
-            if (filter?.length == 0 || article.adxKeywords!!.toLowerCase().contains(filter.toString()))
+            var article: Article
+            for (obj in mValuesAll)
             {
-                mValues.add(article)
+                article = obj as Article
+                if (filter?.length == 0 || article.adxKeywords!!.toLowerCase().contains(filter.toString()))
+                {
+                    mValues.add(article)
+                }
             }
+        }
+        else
+        {
+            mValues.addAll(mValuesAll)
         }
         notifyDataSetChanged()
     }
