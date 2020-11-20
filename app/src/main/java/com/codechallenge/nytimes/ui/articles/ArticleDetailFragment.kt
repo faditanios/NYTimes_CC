@@ -1,21 +1,22 @@
 package com.codechallenge.nytimes.ui.articles
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.codechallenge.nytimes.R
 import com.codechallenge.nytimes.databinding.ArticleDetailBinding
 import com.codechallenge.nytimes.model.Article
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import kotlinx.android.synthetic.main.toolbar_layout.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
- * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [ArticleListActivity]
- * in two-pane mode (on tablets) or a [ArticleDetailActivity]
+ * A fragment representing a single Article detail screen.
  * on handsets.
  */
 class ArticleDetailFragment : Fragment()
@@ -32,14 +33,7 @@ class ArticleDetailFragment : Fragment()
         arguments?.let {
             if (it.containsKey(ARG_ARTICLE))
             {
-                // Load the dummy content specified by the fragment
-                // arguments. In a real-world scenario, use a Loader
-                // to load content from a content provider.
-                article = arguments!!.getSerializable(ARG_ARTICLE) as Article?
-                val activity: Activity? = this.activity
-                val appBarLayout: CollapsingToolbarLayout =
-                    activity!!.findViewById(R.id.toolbar_layout)
-                appBarLayout.title = article!!.source
+                article = it.getSerializable(ARG_ARTICLE) as Article?
             }
         }
     }
@@ -53,17 +47,30 @@ class ArticleDetailFragment : Fragment()
             inflater, R.layout.article_detail, container, false
         )
         val view: View = binding.getRoot()
-        if (article != null)
-        {
-            binding.article = article
+        article?.let {
+            lifecycleScope.launch(Dispatchers.Main)
+            {
+                bindArticleInform(binding, it)
+            }
         }
         return view
+    }
+
+    override fun onResume()
+    {
+        super.onResume()
+        (activity as ArticleActivity)?.toolbar?.setTitle(getString(R.string.Article_Details))
+    }
+
+    suspend fun bindArticleInform(binding: ArticleDetailBinding, article: Article)
+    {
+        binding.article = article
     }
 
     companion object
     {
         /**
-         * The fragment argument representing the item ID that this fragment
+         * The fragment argument representing the Article ID that this fragment
          * represents.
          */
         const val ARG_ARTICLE = "article"

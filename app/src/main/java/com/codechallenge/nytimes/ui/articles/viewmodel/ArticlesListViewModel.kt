@@ -8,7 +8,8 @@ class ArticlesListViewModel : BaseViewModel()
     init
     {
         repository = ArticlesRepository()
-        result = repository!!.getResultLiveData()
+        result = repository?.getResultLiveData()
+        search()
     }
 
 }

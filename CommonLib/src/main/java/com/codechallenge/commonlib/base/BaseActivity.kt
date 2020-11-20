@@ -3,8 +3,6 @@ package com.codechallenge.commonlib.base
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import com.codechallenge.commonlib.R
 
 open class BaseActivity : AppCompatActivity()
 {
@@ -20,7 +18,7 @@ open class BaseActivity : AppCompatActivity()
     override fun onOptionsItemSelected(item: MenuItem): Boolean
     {
         val id = item.itemId
-        if (id == R.id.home)
+        if (id == android.R.id.home)
         {
             //navigateUpTo(new Intent(this, ArticleListActivity.class));
             //return true;

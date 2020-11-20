@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nyt_nav"
+    app:startDestination="@id/articleListFragment">
+
+    <fragment
+        android:id="@+id/articleListFragment"
+        android:name="com.codechallenge.nytimes.ui.articles.ArticleListFragment"
+        android:label="fragment_article_list"
+        tools:layout="@layout/fragment_article_list" >
+        <action
+            android:id="@+id/navigate_to_details"
+            app:destination="@id/articleDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/articleDetailFragment"
+        android:name="com.codechallenge.nytimes.ui.articles.ArticleDetailFragment"
+        android:label="ArticleDetailFragment" >
+        <action
+            android:id="@+id/navigate_to_list"
+            app:destination="@id/articleListFragment" />
+    </fragment>
+</navigation>

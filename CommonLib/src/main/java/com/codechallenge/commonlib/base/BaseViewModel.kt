@@ -16,7 +16,7 @@ abstract class BaseViewModel : ViewModel()
     {
         viewModelScope.launch(Dispatchers.IO)
         {
-            repository!!.search()
+            repository?.search()
         }
     }
 

@@ -1,19 +1,22 @@
 package com.codechallenge.commonlib.base
 
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.codechallenge.commonlib.R
 
-open class BaseListActivity: BaseActivity()
+open class BaseListFragment : Fragment()
 {
     protected var adapter: BaseRecyclerViewAdapter? = null
 
     //region RecyclerView
-    protected fun initRecyclerView(rvId: Int)
+    protected fun initRecyclerView(view: View, rvId: Int)
     {
-        val recyclerView: RecyclerView = findViewById(rvId)!!
+        val recyclerView: RecyclerView = view.findViewById(rvId)!!
         recyclerView.adapter = adapter
     }
 
@@ -24,14 +27,10 @@ open class BaseListActivity: BaseActivity()
     }
     //endregion
 
-    //endregion
-    //region Menu
     var menuItemSearch: MenuItem? = null
     var searchView: SearchView? = null
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
     {
-        val inflater = menuInflater
         inflater.inflate(R.menu.common_list_menu, menu)
         menuItemSearch = menu.findItem(R.id.action_search)
         searchView = (menuItemSearch as MenuItem).actionView as SearchView
@@ -39,17 +38,20 @@ open class BaseListActivity: BaseActivity()
         {
             override fun onQueryTextSubmit(query: String): Boolean
             {
-                searchView?.clearFocus()
+                searchView?.let {
+                    it.clearFocus()
+                }
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean
             {
-                adapter?.filter(newText)
+                adapter?.let{
+                    it.filter(newText)
+                }
                 return false
             }
         })
-        return super.onCreateOptionsMenu(menu)
     }
     //endregion
 }

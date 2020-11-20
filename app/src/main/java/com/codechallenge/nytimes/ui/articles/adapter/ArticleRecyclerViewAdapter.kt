@@ -78,7 +78,7 @@ class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickLis
         for (obj in mValuesAll)
         {
             article = obj as Article
-            if (filter!!.length == 0 || article.adxKeywords!!.toLowerCase().contains(filter))
+            if (filter?.length == 0 || article.adxKeywords!!.toLowerCase().contains(filter.toString()))
             {
                 mValues.add(article)
             }
