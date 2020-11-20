@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 
 abstract class BaseRepository
 {
-    protected var result = MutableLiveData<Any?>()
+    var result = MutableLiveData<Any?>()
 
     fun getResultLiveData(): LiveData<*>?
     {

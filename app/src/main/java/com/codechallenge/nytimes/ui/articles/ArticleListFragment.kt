@@ -20,6 +20,7 @@ import com.codechallenge.nytimes.model.ArticleResult
 import com.codechallenge.nytimes.ui.articles.adapter.ArticleRecyclerViewAdapter
 import com.codechallenge.nytimes.ui.articles.viewmodel.ArticlesListViewModel
 import kotlinx.android.synthetic.main.toolbar_layout.*
+import org.koin.android.ext.android.get
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +34,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class ArticleListFragment : BaseListFragment(), CustomClickListener
 {
-    var viewModel: ArticlesListViewModel? = null
+    val viewModel = get<ArticlesListViewModel>()
     var rootView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?)
@@ -73,7 +74,6 @@ class ArticleListFragment : BaseListFragment(), CustomClickListener
 
     fun initModelView()
     {
-        viewModel = ViewModelProvider(this).get(ArticlesListViewModel::class.java)
         viewModel?.getResultLiveData()?.observe(viewLifecycleOwner, Observer<Any?>
         { articleResult ->
             updateUI(articleResult as ArticleResult)

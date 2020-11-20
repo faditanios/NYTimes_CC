@@ -6,10 +6,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel : ViewModel()
+abstract class BaseViewModel(val repository: BaseRepository) : ViewModel()
 {
-    protected var repository: BaseRepository? = null
-
     protected var result: LiveData<*>? = null
 
     fun search()

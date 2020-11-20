@@ -6,7 +6,7 @@ import com.codechallenge.commonlib.base.BaseRepository
 import com.codechallenge.nytimes.BuildConfig
 import com.codechallenge.nytimes.util.api.RetrofitAPIInterface
 
-class ArticlesRepository : BaseRepository()
+class ArticleRepository : BaseRepository()
 {
     val TAG = "NYT"
     private val apiService =
