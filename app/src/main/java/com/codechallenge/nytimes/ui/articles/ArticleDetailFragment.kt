@@ -59,7 +59,7 @@ class ArticleDetailFragment : Fragment()
     override fun onResume()
     {
         super.onResume()
-        (activity as ArticleActivity)?.toolbar?.setTitle(getString(R.string.Article_Details))
+        (activity as ArticleActivity).toolbar?.setTitle(getString(R.string.Article_Details))
     }
 
     suspend fun bindArticleInform(binding: ArticleDetailBinding, article: Article)

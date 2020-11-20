@@ -10,7 +10,7 @@ class ArticlesListViewModel(articleDomain: ArticleDomain) : BaseViewModel(articl
 {
     init
     {
-        result = articleDomain?.getResultLiveData()
+        result = articleDomain.getResultLiveData()
         viewModelScope.launch(Dispatchers.IO) { articleDomain.search() }
     }
 

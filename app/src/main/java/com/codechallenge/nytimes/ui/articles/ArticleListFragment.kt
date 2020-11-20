@@ -57,7 +57,7 @@ class ArticleListFragment : BaseListFragment(), CustomClickListener
     override fun onResume()
     {
         super.onResume()
-        (activity as ArticleActivity)?.toolbar?.setTitle(getString(R.string.Articles_List))
+        (activity as ArticleActivity).toolbar?.setTitle(getString(R.string.Articles_List))
     }
 
     fun initialize()
@@ -74,7 +74,7 @@ class ArticleListFragment : BaseListFragment(), CustomClickListener
 
     fun initModelView()
     {
-        viewModel?.getResultLiveData()?.observe(viewLifecycleOwner, Observer<Any?>
+        viewModel.getResultLiveData()?.observe(viewLifecycleOwner, Observer<Any?>
         { articleResult ->
             updateUI(articleResult as ArticleResult)
         })

@@ -11,8 +11,10 @@ import com.codechallenge.commonlib.listener.CustomClickListener
 import com.codechallenge.nytimes.R
 import com.codechallenge.nytimes.databinding.ArticleListItemBinding
 import com.codechallenge.nytimes.model.Article
+import java.util.*
 
-class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickListener) : BaseRecyclerViewAdapter()
+class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickListener) :
+    BaseRecyclerViewAdapter()
 {
     /**
      * Thid custom listener will be used to handle the click on the recycler view
@@ -60,7 +62,10 @@ class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickLis
         articleViewHolder.articleListItemBinding.article = articleViewHolder.article
 
         //Loading the image in the image view
-        articleViewHolder.article?.loadMedia(articleViewHolder.iv_media, R.drawable.ic_launcher_background)
+        articleViewHolder.article?.loadMedia(
+            articleViewHolder.iv_media,
+            R.drawable.ic_launcher_background
+        )
         articleViewHolder.mView.setOnClickListener(View.OnClickListener {
             customClickListener.onCustomClick(
                 null,
@@ -75,19 +80,20 @@ class ArticleRecyclerViewAdapter(private val customClickListener: CustomClickLis
     {
         clear()
         val filterLength = filter?.length ?: 0
-        if(filterLength > 0)
+        if (filterLength > 0)
         {
             var article: Article
             for (obj in mValuesAll)
             {
                 article = obj as Article
-                if (filter?.length == 0 || article.adxKeywords!!.toLowerCase().contains(filter.toString()))
+                if (filter?.length == 0 || article.adxKeywords!!.toLowerCase(Locale.getDefault())
+                        .contains(filter.toString())
+                )
                 {
                     mValues.add(article)
                 }
             }
-        }
-        else
+        } else
         {
             mValues.addAll(mValuesAll)
         }
