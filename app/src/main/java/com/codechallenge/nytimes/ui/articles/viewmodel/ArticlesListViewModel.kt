@@ -1,15 +1,18 @@
 package com.codechallenge.nytimes.ui.articles.viewmodel
 
-import com.codechallenge.commonlib.base.BaseRepository
+import androidx.lifecycle.viewModelScope
 import com.codechallenge.commonlib.base.BaseViewModel
-import com.codechallenge.nytimes.dao.repository.ArticleRepository
+import com.codechallenge.nytimes.domain.ArticleDomain
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class ArticlesListViewModel(repository: ArticleRepository) : BaseViewModel(repository)
+class ArticlesListViewModel(articleDomain: ArticleDomain) : BaseViewModel(articleDomain)
 {
     init
     {
-        result = repository?.getResultLiveData()
-        search()
+        result = articleDomain?.getResultLiveData()
+        viewModelScope.launch(Dispatchers.IO) { articleDomain.search() }
+
     }
 
 }
