@@ -1,5 +1,5 @@
 # NYTimes
-NYTimes is a Mobile Application developed in Android and implementing the Model-View-ViewModel (MVVM) design pattern.
+NYTimes is a Mobile Application developed in Kotlin and implementing the Model-View-ViewModel (MVVM) design pattern.
 The oriented object approach is represent in the applied design pattern and base classes implemented in the CommonLib library.
 In the sample, I used Koin for the dependency injection framework
 
