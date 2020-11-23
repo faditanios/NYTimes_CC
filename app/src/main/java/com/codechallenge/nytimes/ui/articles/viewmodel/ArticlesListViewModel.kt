@@ -17,18 +17,16 @@ class ArticlesListViewModel(val getArticlesList: GetArticlesListUseCase) : BaseV
 {
     private var mutableResult: MutableLiveData<State<ArticleResult>> = MutableLiveData()
 
-    val result: LiveData<State<ArticleResult>>
-        get()
-        {
-            return mutableResult
-        }
+    //
+    val result: LiveData<State<ArticleResult>> = mutableResult
+
 
     init
     {
         search()
     }
 
-    fun search()
+    private fun search()
     {
         viewModelScope.launch {
             mutableResult.value = State(responseType = Status.LOADING)
