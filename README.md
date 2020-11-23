@@ -1,7 +1,19 @@
 # NYTimes
-NYTimes is a Mobile Application developed in Kotlin and implementing the Model-View-ViewModel (MVVM) design pattern.
+NYTimes is a Mobile Application developed in Kotlin and implementing the Model-View-ViewModel (MVVM) design pattern with clean architecture.
 The oriented object approach is represent in the applied design pattern and base classes implemented in the CommonLib library.
 In the sample, I used Koin for the dependency injection framework
+
+## The code is divided into three separate layers: 
+### Presentation Layer
+Will include the Activities, Fragments, ViewModels, Adapters.
+
+### Domain Layer
+Will contains all the use cases of out application.
+
+### Data Layer
+Will contains all the repositories which the domain layer can use in addition to the datasources.
+
+
 
 ## Project Hierarchy
 The project contains app module implementing CommonLib library. CommonLib contains all the base classes, common Retrofit API Client, common listeners and all common features that can be used in different modules
