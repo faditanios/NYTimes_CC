@@ -26,8 +26,7 @@ class ArticleDetailFragment : Fragment()
      */
     private var article: Article? = null
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             if (it.containsKey(ARG_ARTICLE))
