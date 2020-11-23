@@ -15,7 +15,7 @@ val appModule = module {
     //define a singleton
     single { ArticleDataSource() }
 
-    single { GetArticlesListUseCase() }
+    single { GetArticlesListUseCase(get()) }
 
     single<ArticleRepository> { ArticleRepositoryImpl(get()) }
 }
