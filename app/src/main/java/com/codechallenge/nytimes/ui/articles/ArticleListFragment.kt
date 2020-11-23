@@ -15,7 +15,7 @@ import com.codechallenge.nytimes.model.Article
 import com.codechallenge.nytimes.model.ArticleResult
 import com.codechallenge.nytimes.ui.articles.adapter.ArticleRecyclerViewAdapter
 import com.codechallenge.nytimes.ui.articles.viewmodel.ArticlesListViewModel
-import com.codechallenge.nytimes.util.api.Data
+import com.codechallenge.nytimes.util.api.State
 import com.codechallenge.nytimes.util.api.Status
 import kotlinx.android.synthetic.main.article_list.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
@@ -73,10 +73,10 @@ class ArticleListFragment : BaseListFragment(), CustomClickListener
 
     fun initModelView()
     {
-        viewModel.result.observe(::getLifecycle, ::updateUI)
+        viewModel.result.observe(viewLifecycleOwner, ::updateUI)
     }
 
-    private fun updateUI(articleData: Data<ArticleResult>)
+    private fun updateUI(articleData: State<ArticleResult>)
     {
         when (articleData.responseType)
         {

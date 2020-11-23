@@ -7,5 +7,4 @@ import com.codechallenge.nytimes.model.ArticleResult
 class ArticleRepositoryImpl(private val articleDataSource: ArticleDataSource) : ArticleRepository
 {
     override suspend fun getArticlesList(): Result<ArticleResult> = articleDataSource.getArticlesList()
-
 }

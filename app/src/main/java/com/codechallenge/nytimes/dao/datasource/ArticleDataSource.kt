@@ -18,12 +18,9 @@ class ArticleDataSource
             BuildConfig.period,
             BuildConfig.API_KEY
         )
-        if (response.isSuccessful)
-        {
-            return Result.Success(response.body() as ArticleResult)
-        } else
-        {
-            return Result.Failure(Exception("Bad request/response"))
-        }
+        return if (response.isSuccessful)
+            Result.Success(response.body() as ArticleResult)
+        else
+            Result.Failure(Exception("Bad request/response"))
     }
 }
