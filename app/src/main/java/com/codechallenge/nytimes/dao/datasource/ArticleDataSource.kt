@@ -6,8 +6,8 @@ import com.codechallenge.nytimes.model.ArticleResult
 import com.codechallenge.nytimes.util.api.RetrofitAPIInterface
 import retrofit2.Retrofit
 
-class ArticleDataSource(private val retrofit: Retrofit){
-
+class ArticleDataSource(private val retrofit: Retrofit)
+{
     private val apiService = retrofit.create(RetrofitAPIInterface::class.java)
 
     suspend fun getArticlesList(): Result<ArticleResult>
