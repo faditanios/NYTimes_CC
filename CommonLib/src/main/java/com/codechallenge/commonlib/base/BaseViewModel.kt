@@ -1,17 +1,26 @@
 package com.codechallenge.commonlib.base
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlin.coroutines.CoroutineContext
 
-abstract class BaseViewModel(val domain: BaseDomain) : ViewModel()
+abstract class BaseViewModel : ViewModel(), CoroutineScope
 {
-    protected var result: LiveData<*>? = null
+    //    protected var result: LiveData<*>? = null
+//
+//    fun getResultLiveData(): LiveData<*>?
+//    {
+//        return result
+//    }
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main + SupervisorJob()
 
-    fun getResultLiveData(): LiveData<*>?
+    override fun onCleared()
     {
-        return result
+        super.onCleared()
+        coroutineContext.cancel()
     }
 }

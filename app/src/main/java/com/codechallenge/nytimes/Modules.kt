@@ -1,17 +1,21 @@
 package com.codechallenge.nytimes
 
+import com.codechallenge.nytimes.dao.datasource.ArticleDataSource
 import com.codechallenge.nytimes.dao.repository.ArticleRepository
-import com.codechallenge.nytimes.domain.ArticleDomain
+import com.codechallenge.nytimes.dao.repository.ArticleRepositoryImpl
+import com.codechallenge.nytimes.domain.usecases.GetArticlesListUseCase
 import com.codechallenge.nytimes.ui.articles.viewmodel.ArticlesListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    //define a singleton
-    single { ArticleRepository() }
 
-    single { ArticleDomain(get()) }
-
-    //create a new instance every time
     viewModel { ArticlesListViewModel(get()) }
+
+    //define a singleton
+    single { ArticleDataSource() }
+
+    single { GetArticlesListUseCase() }
+
+    single<ArticleRepository> { ArticleRepositoryImpl(get()) }
 }
