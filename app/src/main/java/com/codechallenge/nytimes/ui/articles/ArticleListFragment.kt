@@ -73,11 +73,7 @@ class ArticleListFragment : BaseListFragment(), CustomClickListener
 
     fun initModelView()
     {
-        viewModel.mainState.observe(::getLifecycle, ::updateUI)
-//        viewModel.getResultLiveData()?.observe(viewLifecycleOwner, Observer<Any?>
-//        { articleResult ->
-//            updateUI(articleResult as ArticleResult)
-//        })
+        viewModel.result.observe(::getLifecycle, ::updateUI)
     }
 
     private fun updateUI(articleData: Data<ArticleResult>)

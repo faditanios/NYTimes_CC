@@ -14,34 +14,32 @@ import com.codechallenge.nytimes.domain.Result
 
 class ArticlesListViewModel(val getArticlesList: GetArticlesListUseCase) : BaseViewModel()
 {
-    private var mutableMainState: MutableLiveData<Data<ArticleResult>> = MutableLiveData()
+    private var mutableResult: MutableLiveData<Data<ArticleResult>> = MutableLiveData()
 
-    val mainState: LiveData<Data<ArticleResult>>
+    val result: LiveData<Data<ArticleResult>>
         get()
         {
-            return mutableMainState
+            return mutableResult
         }
-
-
-    fun search() = launch {
-        mutableMainState.value = Data(responseType = Status.LOADING)
-        when (val result = withContext(Dispatchers.IO) { getArticlesList() })
-        {
-            is Result.Failure ->
-            {
-                mutableMainState.value = Data(responseType = Status.ERROR, error = result.exception)
-            }
-            is Result.Success ->
-            {
-                mutableMainState.value = Data(responseType = Status.SUCCESSFUL, data = result.data)
-            }
-        }
-    }
-
 
     init
     {
         search()
+    }
+
+    fun search() = launch {
+        mutableResult.value = Data(responseType = Status.LOADING)
+        when (val result = withContext(Dispatchers.IO) { getArticlesList() })
+        {
+            is Result.Failure ->
+            {
+                mutableResult.value = Data(responseType = Status.ERROR, error = result.exception)
+            }
+            is Result.Success ->
+            {
+                mutableResult.value = Data(responseType = Status.SUCCESSFUL, data = result.data)
+            }
+        }
     }
 
 }
